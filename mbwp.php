@@ -7,7 +7,7 @@ Plugin Name: MenuBaron for WordPress
 Plugin URI: http://menubaron.com
 Description: Display MenuBaron.com powered online restaurant menus on your restaurant's WordPress site.
 Author: MenuBaron
-Version: 1.0
+Version: 1.0.1
 Author URI: http://menubaron.com
 */
 
