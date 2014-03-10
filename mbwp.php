@@ -11,6 +11,8 @@ Version: 1.0
 Author URI: http://menubaron.com
 */
 
+wp_enqueue_script('jquery-ui', plugins_url('js/jquery-ui-1.10.4.custom.min.js',__FILE__), array('jquery'), '1.8.6');
+
 if ( is_admin() ){ // admin actions
   add_action('admin_menu', 'mb_plugin_menu');
   add_action('admin_init', 'register_mbsettings');
@@ -273,9 +275,25 @@ function mb_fullmenu( $atts ){
 			$p=''; $desc='';
 			if(get_option('mb_menu_showprices')) $p = ' - '.$item['Price'];
 			if(get_option('mb_menu_showdesc')) $desc = '<br/><em>'.$item['Desc'].'</em>';
-			echo __('<p>'.$item['Name'].$p.$desc.'</p>');
+			echo __('<p class="mb_menuitem_name" data-img="'.$item['Image'].'">'.$item['Name'].$p.$desc.'</p>');
 		}
 	}
+	?>
+    <style type="text/css">
+	.mb-popup{width:auto;max-width:600px;height:auto;max-height:800px;position:fixed;left:50%;top:30%;padding:10px;border:1px solid #333;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff}
+	</style>
+    <script type="text/javascript">
+	jQuery( document ).ready(function() {
+		jQuery(document).tooltip({
+			items: "p, [data-image]",
+			content: function(){
+				var imgurl = jQuery(this).attr('data-img');
+				return '<img class="mb-popup" src="'+imgurl+'"/>';
+			}
+		});
+	});
+	</script>
+    <?php
 }
 add_shortcode( 'mb_fullmenu', 'mb_fullmenu' );
 
