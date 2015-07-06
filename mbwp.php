@@ -7,7 +7,7 @@ Plugin Name: MenuBaron for WordPress
 Plugin URI: http://menubaron.com
 Description: Display MenuBaron.com powered online restaurant menus on your restaurant's WordPress site.
 Author: MenuBaron
-Version: 1.0.1
+Version: 1.0.2
 Author URI: http://menubaron.com
 */
 
@@ -288,7 +288,9 @@ function mb_fullmenu( $atts ){
 			items: "p, [data-image]",
 			content: function(){
 				var imgurl = jQuery(this).attr('data-img');
-				return '<img class="mb-popup" src="'+imgurl+'"/>';
+				if(imgurl!='http://images.menubaron.com/images/food/image_placeholder_lrg.jpg'){
+					return '<img class="mb-popup" src="'+imgurl+'"/>';
+				}
 			}
 		});
 	});
